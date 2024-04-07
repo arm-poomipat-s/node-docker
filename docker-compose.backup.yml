@@ -1,0 +1,14 @@
+#docker run -v C:\Users\poomi\OneDrive\Desktop\Node-docker:/app:ro -v /app/node_modules --env-file ./.env -p 3000:4000 -d --name node-app  node-app-image
+version: '3'
+services:
+  node-app:
+    build: . # คำสั่ง docker build "ตำแหน่ง Dockerfile"
+    ports: # กำหนด port
+      - '3000:3000' #vm port: container port
+    volumes:
+      - ./:/app #mount local to container
+      - /app/node_modules
+    environment:
+      - PORT=3000 # container port
+    # env_file: ถ้าอยากใช้ไฟล์ .env
+    #   - ./.env
